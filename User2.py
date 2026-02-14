@@ -35,22 +35,26 @@ class User():
         else:
             raise Exception("This isn't a valid email address") 
     
-    @classmethod
-    def create_post(cls):
+    
+    def create_post(self):
         post = input("Please enter your post:\n")
-        new_post = cls
+        new_post = self.posts.append(post)
+        
         print(new_post)
     
      
-# calling on the class to create a user        
-def new_user():
-    user_info = {
-        "name": input("Please enter your name:\n"),
-        "email": input("Please enter your email:\n"),
-        "drivers_license": input("Please enter your license number:\n")
-    }   
-    new_user = User(**user_info)    
-    return f"{new_user} was created successfully"
+# calling on the class to create a user 
+    @classmethod       
+    def new_user(cls):
+        user_info = {
+            "name": input("Please enter your name:\n"),
+            "email": input("Please enter your email:\n"),
+            "drivers_license": input("Please enter your license number:\n")
+        }   
+        new_user = User(**user_info) 
+        cls.all_users.append(new_user)   
+        return f"{new_user} was created successfully"
 
-print(new_user())
+print(User.new_user())
+User.create_post()
 
